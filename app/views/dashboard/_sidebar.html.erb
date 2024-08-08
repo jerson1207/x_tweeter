@@ -1,0 +1,56 @@
+<div class='w-40 mx-4 flex flex-col font-thin'>
+  <div class='my-4'>
+    <%= link_to nil, class: 'flex items-center' do %>
+      <i class="fa-brands fa-twitter fa-3x" style="color: #74C0FC;"></i>
+    <% end %>
+  </div>
+  
+  <div class='my-4'>
+    <%= link_to nil, class: 'flex items-center' do %>
+      <i class="fa-solid fa-house"></i>
+      <span class="ml-2">Home</span>
+    <% end %>
+  </div>
+
+  <div class='my-2'>
+    <%= link_to nil, class: 'flex items-center' do %>
+      <i class="fa-solid fa-hashtag"></i>
+      <span class="ml-2">Explorer</span>
+    <% end %>
+  </div>
+
+  <div class='my-2'>
+    <%= link_to nil, class: 'flex items-center' do %>
+      <i class="fa-solid fa-bell"></i>
+      <span class="ml-2">Notification</span>
+    <% end %>
+  </div>
+
+  <div class='my-2'>
+    <%= link_to nil, class: 'flex items-center' do %>
+      <i class="fa-solid fa-message"></i>
+      <span class="ml-2">Messages</span>
+    <% end %>
+  </div>
+
+  <div class='my-2'>
+    <%= link_to nil,  class: 'flex items-center' do %>
+      <i class="fa-solid fa-message"></i>
+      <span class="ml-2">Bookmarks</span>
+    <% end %>
+  </div>
+
+  <div class='my-2'>
+    <%= link_to nil, class: 'flex items-center' do %>
+      <i class="fa-solid fa-user"></i>
+      <span class="ml-2">Profile</span>
+    <% end %>
+  </div>
+
+  <%= modal_button 'Tweet' %>
+
+  <div class='mt-4'>
+    <%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete }, class:"text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"  %>
+  </div>
+   
+</div>
