@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     dashboard_path
   end
 
-  def def redirect_to_username_form
+  def redirect_to_username_form
     redirect_to new_username_path and return
   end
 end

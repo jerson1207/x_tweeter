@@ -13,27 +13,30 @@ RSpec.describe "Usernames", type: :request do
   end
 
   describe "PUT /update" do
-    context "when username is blank" do
-      it "allows blank username and redirects to the dashboard" do
-        put username_path(user), params: {
-          user: { username: "" }  # Blank username
-        }
-
-        expect(user.reload.username).to be_blank  # Ensure username is still blank
+    context 'with valid params' do     
+      it "update the username" do
+        expect do
+          put username_path(user), params: {
+            user: {
+              username: "foobar"
+            }
+          }
+        end.to change { user.reload.username }.from(nil).to("foobar")
         expect(response).to redirect_to(dashboard_path)
       end
     end
 
-    context "when updating to a unique username" do
-      it "updates the username successfully" do
-        expect {
+    context 'with invalid params' do
+      it "did not update the username" do
+        expect do
           put username_path(user), params: {
-            user: { username: "unique_username" }
+            user: {
+              username: ""
+            }
           }
-        }.to change { user.reload.username }.from(nil).to("unique_username")
-        
-        expect(response).to redirect_to(dashboard_path)
+        end.not_to change { user.reload.username }
+        expect(response).to redirect_to(new_username_path)
       end
-    end    
+    end
   end
 end
