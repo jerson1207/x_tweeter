@@ -18,4 +18,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def relative_time_for(time)
+    (Time.zone.now - time) <= 1.day ? time_ago_in_words(time) + " ago" : time.strftime("%b %-d")
+  end
 end
