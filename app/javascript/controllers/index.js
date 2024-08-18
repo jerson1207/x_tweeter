@@ -9,6 +9,3 @@ application.register("hello", HelloController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
-
-import TweetFormController from "./tweet_form_controller"
-application.register("tweet-form", TweetFormController)

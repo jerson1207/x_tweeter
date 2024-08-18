@@ -15,9 +15,14 @@
   </head>
 
   <body data-controller="modal">
-    <div class='container mx-auto'>
+    <% if controller_name = "usernames" %>
       <%= yield %>
-    </div>
+    <% else %>
+      <div class='container mx-auto'>
+        <%= yield %>
+      </div>
+    <% end %>
+    
     <%= render "layouts/modal" %>
   </body>
 </html>
