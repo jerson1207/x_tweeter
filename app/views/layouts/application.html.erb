@@ -15,7 +15,7 @@
   </head>
 
   <body data-controller="modal">
-    <% if controller_name = "usernames" %>
+    <% if controller_name == "usernames" %>
       <%= yield %>
     <% else %>
       <div class='container mx-auto'>

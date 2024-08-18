@@ -22,4 +22,19 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#resize_avatar' do
+    let(:user) { create(:user) }
+
+    context 'when avatar is attached' do
+      before do
+        # Attach an avatar to the user
+        user.avatar.attach(io: File.open('spec/fixtures/files/profile_sample.png'), filename: 'profile_sample.png', content_type: 'image/png')
+      end
+
+      it 'checks if the avatar is attached' do
+        expect(user.avatar).to be_attached
+      end
+    end
+  end
+
 end
