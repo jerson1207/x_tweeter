@@ -1,10 +1,10 @@
-<%= turbo_frame_tag dom_id(tweet) do %>
+<%= turbo_frame_tag dom_id(tweet_presenter.tweet) do %>
   <div class='flex items-start gap-4 hover:bg-gray-200 rounded-md  h-32 p-4'>
-    <%= image_tag tweet.user.avatar, class: "w-12 h-12 rounded-full", alt: "#{tweet.user.display_name}'s avatar" if tweet.user.avatar.present? %>
-    <div class=''>
-      <span class='font-bold'><%= tweet.user.display_name %> </span>
-      <span>@<%= tweet.user.username %> . <%= relative_time_for(tweet.created_at) %> </span>
-      <p><%= tweet.body %></p>
+    <%= image_tag tweet_presenter.avatar, class: "w-12 h-12 rounded-full", alt: "#{tweet_presenter.display_name}'s avatar" if tweet_presenter.avatar.present? %>
+    <div>
+      <span class='font-bold'><%= tweet_presenter.display_name %> </span>
+      <span>@<%= tweet_presenter.username %> . <%= tweet_presenter.formatted_created_at %></span>
+      <p><%= tweet_presenter.body %></p>
       
     </div>
   </div>

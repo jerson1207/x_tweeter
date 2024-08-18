@@ -20,9 +20,8 @@
       <% end %>
     </div>
 
-    <!-- <%= render Tweet.order(created_at: :desc) %> -->
     <div id='tweets'>
-      <%= render Tweet.order(created_at: :desc) %>
+      <%= render partial: "tweets/tweet", collection: @tweets, as: :tweet_presenter %>
     </div>
 
   </div>
