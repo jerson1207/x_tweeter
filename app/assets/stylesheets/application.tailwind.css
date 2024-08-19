@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hover-text {
+  @apply absolute top-[100%] left-1/2 transform -translate-x-1/2 opacity-0 whitespace-nowrap bg-black bg-opacity-70 text-white px-3 py-1 rounded-md text-xs transition-opacity duration-300;
+}
+
+.hover-link:hover .hover-text {
+  @apply opacity-100;
+}
