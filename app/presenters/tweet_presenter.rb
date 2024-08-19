@@ -7,7 +7,7 @@ class TweetPresenter
     @tweet = tweet
   end
 
-  delegate :user, :body, to: :tweet
+  delegate :user, :body, :likes, to: :tweet
   delegate :display_name, :username, :avatar, to: :user
 
   def formatted_created_at
