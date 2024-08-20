@@ -1,13 +1,16 @@
 class TweetPresenter
   include ActionView::Helpers::DateHelper
+  include ActionView::Helpers::TagHelper
+  include Rails.application.routes.url_helpers
 
-  attr_reader :tweet
+  attr_reader :tweet, :current_user
 
-  def initialize(tweet)
+  def initialize(tweet:, current_user:)
     @tweet = tweet
+    @current_user = current_user
   end
 
-  delegate :user, :body, :likes, :likes_count, to: :tweet
+  delegate :user, :body, :likes_count, to: :tweet
   delegate :display_name, :username, :avatar, to: :user
 
   def formatted_created_at
@@ -18,9 +21,39 @@ class TweetPresenter
     end
   end
 
-  private
+  def tweet_like_url
+    if tweet_liked_by_current_user
+      tweet_like_path(tweet, current_user.likes.find_by(tweet: tweet))
+    else
+      tweet_likes_path(tweet)
+    end
+  end
+
+  def turbo_data_method
+    if tweet_liked_by_current_user
+      "delete"
+    else
+      "post"
+    end
+  end
+
+  def like_heart_icon
+    if tweet_liked_by_current_user
+      content_tag(:i, nil, class: 'fa-solid fa-heart')      
+    else
+      content_tag(:i, nil, class: 'fa-regular fa-heart')
+    end
+  end
+
+  private 
 
   def time_difference
     Time.zone.now - tweet.created_at
   end
+
+  def tweet_liked_by_current_user
+    @tweet_liked_by_current_user ||= tweet.liked_users.include?(current_user)
+  end
+
+  alias_method :tweet_liked_by_current_user?, :tweet_liked_by_current_user
 end

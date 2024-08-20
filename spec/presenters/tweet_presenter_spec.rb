@@ -13,7 +13,8 @@ RSpec.describe TweetPresenter, type: :presenter do
       it "displays the short date format" do
         tweet = create(:tweet)
         tweet.update! created_at: 2.days.ago
-        presenter = TweetPresenter.new(tweet)
+
+        presenter = TweetPresenter.new(tweet: tweet, current_user: build_stubbed(:user))
         expect(presenter.formatted_created_at).to eq('Aug 16')
       end
     end
@@ -22,7 +23,7 @@ RSpec.describe TweetPresenter, type: :presenter do
       it "displays the time ago format" do
         tweet = create(:tweet)
         tweet.update! created_at: 2.hours.ago
-        presenter = TweetPresenter.new(tweet)
+        presenter = TweetPresenter.new(tweet: tweet, current_user: build_stubbed(:user))
         expect(presenter.formatted_created_at).to eq('about 2 hours ago')
       end
     end
