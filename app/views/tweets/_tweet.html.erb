@@ -24,15 +24,13 @@
 
         <div>
           <%= link_to tweet_presenter.tweet_like_url, 
-                      data: { "turbo-method": tweet_presenter.turbo_data_method }, 
+                      data: { "turbo-method": tweet_presenter.turbo_like_data_method }, 
                       class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
             <span><%= tweet_presenter.like_heart_icon %></span>
             <span><%= tweet_presenter.likes_count %></span>
             <span class="hover-text">Like</span>
           <% end %>
-        </div>
-
-        
+        </div>      
 
         <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
           <i class="fa-solid fa-chart-column"></i>
@@ -42,9 +40,12 @@
           </span>
         <% end %>
 
-        <div>
-          <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
-            <i class="fa-regular fa-bookmark"></i>
+        <div class="flex gap-2">
+          <%= link_to tweet_presenter.tweet_bookmark_url, 
+                      data: { "turbo-method": tweet_presenter.turbo_bookmark_data_method }, 
+                      class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+            <span><%= tweet_presenter.bookmark_heart_icon %></span>
+            <span class="hover-text">Bookmark</span>
           <% end %>
 
           <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
@@ -54,5 +55,4 @@
       </div>
     </div>
   </div>
-
 <% end %>

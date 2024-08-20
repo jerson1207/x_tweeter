@@ -6,10 +6,13 @@ class User < ApplicationRecord
 
   before_save  :set_display_name, if: -> { username.present? && display_name.blank? }
 
-  has_one_attached :avatar 
+  has_one_attached :avatar
+
   has_many :tweets, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :like_tweets, through: :likes, source: :tweet
+  has_many :liked_tweets, through: :likes, source: :tweet
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarked_tweets, through: :bookmarks, source: :tweet
 
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 

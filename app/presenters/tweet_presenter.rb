@@ -29,7 +29,7 @@ class TweetPresenter
     end
   end
 
-  def turbo_data_method
+  def turbo_like_data_method
     if tweet_liked_by_current_user
       "delete"
     else
@@ -45,6 +45,31 @@ class TweetPresenter
     end
   end
 
+  # bookmark
+  def tweet_bookmark_url
+    if tweet_bookmarked_by_current_user
+      tweet_bookmark_path(tweet, current_user.bookmarks.find_by(tweet: tweet))
+    else
+      tweet_bookmarks_path(tweet)
+    end
+  end
+
+  def turbo_bookmark_data_method
+    if tweet_bookmarked_by_current_user
+      "delete"
+    else
+      "post"
+    end
+  end
+
+  def bookmark_heart_icon
+    if tweet_bookmarked_by_current_user
+      content_tag(:i, nil, class: 'fa-solid fa-bookmark')      
+    else
+      content_tag(:i, nil, class: 'fa-regular fa-bookmark')
+    end
+  end
+
   private 
 
   def time_difference
@@ -53,6 +78,10 @@ class TweetPresenter
 
   def tweet_liked_by_current_user
     @tweet_liked_by_current_user ||= tweet.liked_users.include?(current_user)
+  end
+
+  def tweet_bookmarked_by_current_user
+    @tweet_bookmarked_by_current_user ||= tweet.bookmarked_users.include?(current_user)
   end
 
   alias_method :tweet_liked_by_current_user?, :tweet_liked_by_current_user
