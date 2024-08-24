@@ -14,14 +14,16 @@
           </span>
         <% end %>
 
-        <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
-          <i class="fa-solid fa-repeat"></i>
-          <span>2.6K</span>
-          <span class="hover-text">
-            Repost
-          </span>
+      <div>
+        <%= link_to tweet_presenter.retweet_presenter.url, 
+                    data: { "turbo-method": tweet_presenter.retweet_presenter.request }, 
+                    class: "relative inline-flex items-center gap-2 hover-link group hover:text-[#74C0FC]" do %>
+          <%= tweet_presenter.retweet_presenter.retweet_icon %>
+          <span><%= tweet_presenter.retweets_count %></span>
+          <span class="hover-text">Retweet</span>
         <% end %>
-
+      </div>
+        
         <div>
           <%= link_to tweet_presenter.like_presenter.url, 
                       data: { "turbo-method": tweet_presenter.like_presenter.request }, 
