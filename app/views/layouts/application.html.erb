@@ -16,11 +16,24 @@
   </head>
 
   <body data-controller="modal">
-    <% if controller_name == "usernames" %>
+    <% if controller_name == "usernames" || !user_signed_in? %>
       <%= yield %>
     <% else %>
-      <div class='container mx-auto'>
-        <%= yield %>
+      <div class='container mx-auto flex gap-2 min-h-screen'>
+        <!-- Sidebar -->
+        <div class='w-1/6 sticky top-0 h-screen'>
+          <%= render 'layouts/sidebar' %>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class='flex-grow rounded-lg px-4 '>
+          <%= yield %>
+        </div>
+        
+        <!-- Column -->
+        <div class='w-1/6 bg-green-300 sticky top-0 h-screen'>
+          Column
+        </div>
       </div>
     <% end %>
     

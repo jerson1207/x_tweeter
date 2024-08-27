@@ -1,14 +1,12 @@
-
-<div class='tweet-show-container'>
-  <div class="flex justify-start items-center my-5">
+<div class='w-full bg-white rounded-lg'>
+  <div class="flex justify-start items-center ">
     <%= link_to '#', class: 'back-button', data: { controller: 'back', action: 'click->back#goBack' } do %>
       <%= image_tag 'back_btn.svg', alt: 'Back', class: 'w-5 h-5' %> <!-- Tailwind classes for width and height -->
     <% end %>
     <h2 class="text-xl font-bold ml-2">Post</h2>
   </div>
-  
-  <!-- content -->
-  <div class='hover:bg-gray-200 rounded-md   h-32 p-4'>
+
+  <div class='hover:bg-gray-200 rounded-md h-32'>
     <div class='flex justify-start gap-4'>
       <%= image_tag @tweet_presenter.avatar, class: "w-12 h-12 rounded-full", alt: "#{@tweet_presenter.display_name}'s avatar" if @tweet_presenter.avatar.present? %>
       <div>
@@ -77,3 +75,4 @@
     </div>
   </div>
 </div>
+

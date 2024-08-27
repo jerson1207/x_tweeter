@@ -1,19 +1,15 @@
 <%= turbo_frame_tag dom_id(tweet_presenter.tweet) do %>
-  <div class='flex items-start gap-4 hover:bg-gray-200 rounded-md  h-32 p-4'>
+  <div class='flex items-start gap-4 hover:bg-gray-200 rounded-md  h-32'>
     <%= image_tag tweet_presenter.avatar, class: "w-12 h-12 rounded-full", alt: "#{tweet_presenter.display_name}'s avatar" if tweet_presenter.avatar.present? %>
     
     <div class="w-full">
       <span class='font-bold'><%= tweet_presenter.display_name %> </span>
-
       <span>@<%= tweet_presenter.username %> . <%= tweet_presenter.formatted_created_at %></span>
-
 
       <%= link_to tweet_path(tweet_presenter.tweet), data: { turbo_frame: "_top" } do %>
         <p><%= tweet_presenter.body %></p>
       <% end %>
-      
 
-      
       <div class='flex justify-between mt-8'>
         <div>
           <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
@@ -24,7 +20,6 @@
             </span>
           <% end %>
         </div>
-
 
         <div>
           <%= link_to tweet_presenter.retweet_presenter.url, 
