@@ -1,23 +1,21 @@
 <%= turbo_frame_tag dom_id(tweet_presenter.tweet) do %>
-  <div class='flex items-start gap-4 hover:bg-gray-200 rounded-md  h-32'>
+  <div class='flex items-start gap-4 hover:bg-gray-200 rounded-md h-32 p-4'>
     <%= image_tag tweet_presenter.avatar, class: "w-12 h-12 rounded-full", alt: "#{tweet_presenter.display_name}'s avatar" if tweet_presenter.avatar.present? %>
     
     <div class="w-full">
       <span class='font-bold'><%= tweet_presenter.display_name %> </span>
-      <span>@<%= tweet_presenter.username %> . <%= tweet_presenter.formatted_created_at %></span>
+      <span class='text-gray-500'>@<%= tweet_presenter.username %> . <%= tweet_presenter.formatted_created_at %></span>
 
       <%= link_to tweet_path(tweet_presenter.tweet), data: { turbo_frame: "_top" } do %>
         <p><%= tweet_presenter.body %></p>
       <% end %>
 
-      <div class='flex justify-between mt-8'>
+      <div class='flex justify-between mt-4'>
         <div>
-          <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+          <%= link_to '#', class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
             <i class="fa-regular fa-comment"></i>
             <span>2.6K</span>
-            <span class="hover-text">
-              reply
-            </span>
+            <span class="hover-text">reply</span>
           <% end %>
         </div>
 
@@ -41,13 +39,13 @@
           <% end %>
         </div>      
 
-        <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
-          <i class="fa-solid fa-chart-column"></i>
-          <span>2.6M</span>
-          <span class="hover-text">
-            View
-          </span>
-        <% end %>
+        <div>
+          <%= link_to '#', class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+            <i class="fa-solid fa-chart-column"></i>
+            <span>2.6M</span>
+            <span class="hover-text">View</span>
+          <% end %>
+        </div>
 
         <div class="flex gap-4">
           <%= link_to tweet_presenter.bookmark_presenter.url, 
@@ -55,11 +53,12 @@
                       class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
             <span><%= tweet_presenter.bookmark_presenter.bookmark_icon %></span>
             <span class="hover-text">Bookmark</span>
-          <% end %>
+          <% end %>       
+                                            
 
-          <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+          <%= link_to '#', class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
             <i class="fa-solid fa-arrow-up-from-bracket"></i>
-          <% end %>        
+          <% end %>
         </div>
       </div>
     </div>

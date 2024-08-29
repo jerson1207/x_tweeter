@@ -10,7 +10,11 @@ class LikePresenter
   end
 
   def url
-    tweet_liked_by_current_user ? tweet_like_path(tweet, current_user.likes.find_by(tweet: tweet)) : tweet_likes_path(tweet)
+    if tweet_liked_by_current_user
+      tweet_like_path(tweet, current_user.likes.find_by(tweet: tweet))
+    else
+      tweet_likes_path(tweet)
+    end
   end
 
   def request
@@ -18,12 +22,16 @@ class LikePresenter
   end
 
   def heart_icon
-    content_tag(:i, nil, class: tweet_liked_by_current_user ? 'fa-solid fa-heart' : 'fa-regular fa-heart')
+    content_tag(:i, nil, class: heart_icon_class)
   end
 
-  private 
+  private
 
   def tweet_liked_by_current_user
-    @tweet_liked_by_current_user ||= tweet.liked_users.include?(current_user)
+    @tweet_liked_by_current_user ||= current_user.likes.exists?(tweet: tweet)
+  end
+
+  def heart_icon_class
+    tweet_liked_by_current_user ? 'fa-solid fa-heart' : 'fa-regular fa-heart'
   end
 end

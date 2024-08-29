@@ -11,8 +11,8 @@
       @current_user = current_user
     end
 
-    def url
-      tweet_retweeted_by_current_user ? tweet_retweet_path(tweet, current_user.retweets.find_by(tweet: tweet)) : tweet_retweets_path(tweet)
+    def url(source: "tweet_show")
+      tweet_retweeted_by_current_user ? tweet_retweet_path(tweet, current_user.retweets.find_by(tweet: tweet), source: source) : tweet_retweets_path(tweet, source: source)
     end
 
     def request

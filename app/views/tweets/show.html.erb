@@ -1,78 +1,12 @@
 <div class='w-full bg-white rounded-lg'>
   <div class="flex justify-start items-center ">
     <%= link_to '#', class: 'back-button', data: { controller: 'back', action: 'click->back#goBack' } do %>
-      <%= image_tag 'back_btn.svg', alt: 'Back', class: 'w-5 h-5' %> <!-- Tailwind classes for width and height -->
+      <%= image_tag 'back_btn.svg', alt: 'Back', class: 'w-5 h-5' %>
     <% end %>
     <h2 class="text-xl font-bold ml-2">Post</h2>
   </div>
 
-  <div class='hover:bg-gray-200 rounded-md h-32'>
-    <div class='flex justify-start gap-4'>
-      <%= image_tag @tweet_presenter.avatar, class: "w-12 h-12 rounded-full", alt: "#{@tweet_presenter.display_name}'s avatar" if @tweet_presenter.avatar.present? %>
-      <div>
-        <p class='font-bold'><%= @tweet_presenter.display_name %> </p>
-        <p>@<%= @tweet_presenter.username %></p>
-      </div>
-    
-    </div>
-    
-    <div class="w-full mt-4">
-      <p class="text-[18px]"><%= @tweet_presenter.body %></p>
-
-      <div class='flex justify-between mt-8'>
-        <div>
-          <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
-            <i class="fa-regular fa-comment"></i>
-            <span>2.6K</span>
-            <span class="hover-text">
-              reply
-            </span>
-          <% end %>
-        </div>
-
-
-        <div>
-          <%= link_to @tweet_presenter.retweet_presenter.url, 
-                      data: { "turbo-method": @tweet_presenter.retweet_presenter.request }, 
-                      class: "relative inline-flex items-center gap-2 hover-link group hover:text-[#74C0FC]" do %>
-            <%= @tweet_presenter.retweet_presenter.retweet_icon %>
-            <span><%= @tweet_presenter.retweets_count %></span>
-            <span class="hover-text">Retweet</span>
-          <% end %>
-        </div>
-        
-        <div>
-          <%= link_to @tweet_presenter.like_presenter.url, 
-                      data: { "turbo-method": @tweet_presenter.like_presenter.request }, 
-                      class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
-            <span><%= @tweet_presenter.like_presenter.heart_icon %></span>
-            <span><%= @tweet_presenter.likes_count %></span>
-            <span class="hover-text">Like</span>
-          <% end %>
-        </div>      
-
-        <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
-          <i class="fa-solid fa-chart-column"></i>
-          <span>2.6M</span>
-          <span class="hover-text">
-            View
-          </span>
-        <% end %>
-
-        <div class="flex gap-4">
-          <%= link_to @tweet_presenter.bookmark_presenter.url, 
-                      data: { "turbo-method": @tweet_presenter.bookmark_presenter.request }, 
-                      class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
-            <span><%= @tweet_presenter.bookmark_presenter.bookmark_icon %></span>
-            <span class="hover-text">Bookmark</span>
-          <% end %>
-
-          <%= link_to nil, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
-            <i class="fa-solid fa-arrow-up-from-bracket"></i>
-          <% end %>        
-        </div>
-      </div>
-    </div>
+  <div class="w-full mt-4">
+    <%= render 'tweet', tweet_presenter: @tweet_presenter %>
   </div>
 </div>
-
