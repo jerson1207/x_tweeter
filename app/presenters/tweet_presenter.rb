@@ -13,7 +13,7 @@ class TweetPresenter
     @retweet_presenter = RetweetPresenter.new(tweet: tweet, current_user: current_user)
   end
 
-  delegate :user, :body, :likes_count, :retweets_count, to: :tweet
+  delegate :user, :body, :likes_count, :retweets_count, :views_count, to: :tweet
   delegate :display_name, :username, :avatar, to: :user
   delegate :url, :request, :heart_icon, to: :like_presenter, prefix: :like
   delegate :url, :request, :bookmark_icon, to: :bookmark_presenter, prefix: :bookmark
