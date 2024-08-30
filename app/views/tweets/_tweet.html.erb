@@ -4,7 +4,7 @@
     
     <div class="w-full">
       <span class='font-bold'><%= tweet_presenter.display_name %> </span>
-      <span class='text-gray-500'>@<%= tweet_presenter.username %> . <%= tweet_presenter.formatted_created_at %></span>
+      <span class='text-gray-500'>@<%= tweet_presenter.username %> · <%= tweet_presenter.formatted_created_at %></span>
 
       <%= link_to tweet_path(tweet_presenter.tweet), data: { turbo_frame: "_top" } do %>
         <p><%= tweet_presenter.body %></p>
@@ -12,7 +12,7 @@
 
       <div class='flex justify-between mt-4'>
         <div>
-          <%= link_to tweet_path(tweet_presenter.tweet), data: { turbo_frame: "_top" }, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+          <%= link_to tweet_path(tweet_presenter.tweet), data: { turbo_frame: "_top", turbo_cache: "false" }, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
             <i class="fa-regular fa-comment"></i>
             <span>2.6K</span>
             <span class="hover-text">reply</span>
@@ -49,12 +49,11 @@
 
         <div class="flex gap-4">
           <%= link_to tweet_presenter.bookmark_presenter.url, 
-                      data: { "turbo-method": tweet_presenter.bookmark_presenter.request }, 
-                      class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+              data: { "turbo-method": tweet_presenter.bookmark_presenter.request, turbo_frame: "_top"  }, 
+              class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
             <span><%= tweet_presenter.bookmark_presenter.bookmark_icon %></span>
             <span class="hover-text">Bookmark</span>
-          <% end %>       
-                                            
+          <% end %>                                             
 
           <%= link_to '#', class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
             <i class="fa-solid fa-arrow-up-from-bracket"></i>

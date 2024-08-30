@@ -13,7 +13,7 @@ class TweetPresenter
     @retweet_presenter = RetweetPresenter.new(tweet: tweet, current_user: current_user)
   end
 
-  delegate :user, :body, :likes_count, :retweets_count, :views_count, to: :tweet
+  delegate :bookmark, :user, :body, :created_at, :likes_count, :retweets_count, :views_count, to: :tweet
   delegate :display_name, :username, :avatar, to: :user
   delegate :url, :request, :heart_icon, to: :like_presenter, prefix: :like
   delegate :url, :request, :bookmark_icon, to: :bookmark_presenter, prefix: :bookmark
@@ -25,6 +25,14 @@ class TweetPresenter
     else
       "#{time_ago_in_words(tweet.created_at)} ago"
     end
+  end
+
+  def formatted_time
+    tweet.created_at.strftime("%l:%M %p")
+  end
+
+  def formatted_full_date
+    tweet.created_at.strftime("%b %d, %Y")
   end
 
   private 

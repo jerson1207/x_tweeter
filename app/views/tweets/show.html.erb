@@ -1,12 +1,33 @@
 <div class='w-full bg-white rounded-lg'>
   <div class="flex justify-start items-center ">
-    <%= link_to '#', class: 'back-button', data: { controller: 'back', action: 'click->back#goBack' } do %>
+    <%= link_to :back, class: 'back-button', data: { controller: 'back', action: 'click->back#goBack' } do %>
       <%= image_tag 'back_btn.svg', alt: 'Back', class: 'w-5 h-5' %>
     <% end %>
     <h2 class="text-xl font-bold ml-2">Post</h2>
   </div>
 
-  <div class="w-full mt-4">
-    <%= render 'tweet', tweet_presenter: @tweet_presenter %>
+  <div class='flex gap-4 mt-4'>
+    <%= image_tag @tweet_presenter.avatar, class: "w-12 h-12 rounded-full", alt: "#{@tweet_presenter.display_name}'s avatar" if @tweet_presenter.avatar.present? %>
+    <div>
+      <p class='font-bold'><%= @tweet_presenter.display_name %> </p>
+      <p class='text-gray-500'>@<%= @tweet_presenter.username %></p>
+    </div>
   </div>
+
+  <div class='mt-4'><%= @tweet_presenter.body %></div>
+
+  <div class="my-4">
+    <span ><%= @tweet_presenter.formatted_time %></span>
+    <span>·</span>
+    <span><%= @tweet_presenter.formatted_full_date %></span>
+    <span>·</span>
+    <span>2666 Views</span>             
+  </div>
+
+  <hr>
+  <div class='m-4'>
+    <%= render partial: "tweets/action_links", locals: { tweet_presenter: @tweet_presenter } %>
+  </div>
+  <hr>
+
 </div>

@@ -1,0 +1,47 @@
+<%= turbo_frame_tag dom_id(tweet_presenter.tweet, :show) do %>
+  <div class='flex justify-between mt-4'>
+    <div>
+      <%= link_to tweet_path(tweet_presenter.tweet), data: { turbo_frame: "_top", turbo_cache: "false" }, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+        <i class="fa-regular fa-comment"></i>
+        <span>2.6K</span>
+        <span class="hover-text">reply</span>
+      <% end %>
+    </div>
+
+    <div>
+      <%= link_to tweet_presenter.retweet_presenter.url, 
+                  data: { "turbo-method": tweet_presenter.retweet_presenter.request }, 
+                  class: "relative inline-flex items-center gap-2 hover-link group hover:text-[#74C0FC]" do %>
+        <%= tweet_presenter.retweet_presenter.retweet_icon %>
+        <span><%= tweet_presenter.retweets_count %></span>
+        <span class="hover-text">Retweet</span>
+      <% end %>
+    </div>
+    
+    <div>
+      <%= link_to tweet_presenter.like_presenter.url, 
+                  data: { "turbo-method": tweet_presenter.like_presenter.request }, 
+                  class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+        <span><%= tweet_presenter.like_presenter.heart_icon %></span>
+        <span><%= tweet_presenter.likes_count %></span>
+        <span class="hover-text">Like</span>
+      <% end %>
+    </div>      
+
+    <div>
+      <%= link_to tweet_presenter.bookmark_presenter.url, 
+          data: { "turbo-method": tweet_presenter.bookmark_presenter.request, turbo_frame: "_top"  }, 
+          class:"relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+        <span><%= tweet_presenter.bookmark_presenter.bookmark_icon %></span>
+        <span>77</span>
+        <span class="hover-text">Bookmark</span>
+      <% end %>    
+    </div>
+
+    <div>
+          <%= link_to '#', class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
+        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+      <% end %>
+    </div>  
+  </div>
+<% end %>
