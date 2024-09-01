@@ -8,6 +8,9 @@
 
   <div class='flex gap-4 mt-4'>
     <%= image_tag @tweet_presenter.avatar, class: "w-12 h-12 rounded-full", alt: "#{@tweet_presenter.display_name}'s avatar" if @tweet_presenter.avatar.present? %>
+    
+    
+    
     <div>
       <p class='font-bold'><%= @tweet_presenter.display_name %> </p>
       <p class='text-gray-500'>@<%= @tweet_presenter.username %></p>
@@ -33,7 +36,11 @@
   <hr>
 
   <div class='flex items-start gap-4 rounded-md p-4'>
-    <%= image_tag current_user.avatar, class: "w-12 h-12 rounded-full" %>
+    <% if current_user.avatar.present? %>
+      <%= image_tag current_user.avatar, class: "w-12 h-12 rounded-full" %>
+    <% else %>
+      <%= image_tag "user-profile.svg", class: "w-12 h-12 rounded-full" %>
+    <% end %>
     
     <div class="w-full">
       <%= turbo_frame_tag "tweet_reply_form" do %>

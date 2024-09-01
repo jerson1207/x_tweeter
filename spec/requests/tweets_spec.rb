@@ -7,7 +7,6 @@ RSpec.describe "Tweets", type: :request do
 
     before do
       sign_in user
-      # Corrected the stubbing to expect the right arguments
       allow(ViewTweetJob).to receive(:perform_async)
     end
 

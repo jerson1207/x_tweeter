@@ -24,7 +24,6 @@ class TweetPresenter
     return user.avatar if user.avatar.present?
     'user-profile.svg'
   end
-  
 
   def formatted_created_at
     if time_difference > 1.day
