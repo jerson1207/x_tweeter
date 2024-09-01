@@ -3,7 +3,7 @@
 <% end %>
 
 <%= turbo_stream.replace "new_post" do %>
-  <%= turbo_frame_tag "new_post" do %>
+  <%= turbo_frame_tag "new_post" do %>    
     <%= form_with model: Tweet.new, url: tweets_path, method: :post, data: { turbo_frame: "new_post" } do |f| %>
       <div class="mb-4">
         <%= f.text_area :body, placeholder: "What's happening?", class: "w-full border-0  p-4 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" %>

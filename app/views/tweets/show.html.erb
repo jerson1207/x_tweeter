@@ -25,9 +25,32 @@
   </div>
 
   <hr>
+
   <div class='m-4'>
     <%= render partial: "tweets/action_links", locals: { tweet_presenter: @tweet_presenter } %>
   </div>
+  
   <hr>
+
+  <div class='flex items-start gap-4 rounded-md p-4'>
+    <%= image_tag current_user.avatar, class: "w-12 h-12 rounded-full" %>
+    
+    <div class="w-full">
+      <%= turbo_frame_tag "tweet_reply_form" do %>
+        <%= render partial: "shared/tweet_form", locals: { 
+                                                  submit_form_path: tweet_reply_tweets_path(@tweet_presenter.tweet),
+                                                  button_label: "Reply", 
+                                                  placeholder_label: "Post your reply" } %>
+      <% end %>
+    </div>
+  </div>
+
+  <hr>
+
+  
+  <div id='reply_tweets'>
+    <%= render partial: "tweets/tweet", collection:  @reply_tweets_presenters, as: :tweet_presenter %>
+  
+  </div>
 
 </div>

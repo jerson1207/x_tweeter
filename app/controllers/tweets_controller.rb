@@ -4,6 +4,12 @@ class TweetsController < ApplicationController
   def show
     ViewTweetJob.perform_async(tweet.id, current_user.id)
     @tweet_presenter = TweetPresenter.new(tweet: @tweet, current_user: current_user)
+    @reply_tweets_presenters = tweet.reply_tweets
+                                    .includes(:user, :liked_users, :bookmarked_users)
+                                    .order(created_at: :desc)
+                                    .map do |reply_tweet|
+      TweetPresenter.new(tweet: reply_tweet, current_user: current_user)
+    end
   end
 
   def create

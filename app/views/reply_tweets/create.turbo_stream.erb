@@ -1,0 +1,17 @@
+<%= turbo_stream.replace "tweet_reply_form" do %>
+  <%= turbo_frame_tag "tweet_reply_form" do %>   
+    <%= form_with model: Tweet.new, url: tweet_reply_tweets_path(@tweet), method: :post, data: { turbo_frame: "tweet_reply_form" } do |f| %>
+      <div class="mb-4">
+        <%= f.text_area :body, placeholder: "Post your reply", class: "w-full border-0  p-4 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+
+      <div class="flex items-center justify-end ">
+        <%= f.submit "Reply", class: "w-24 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.prepend "reply_tweets" do %>
+  <%= render partial: "tweets/tweet", locals: { tweet_presenter: TweetPresenter.new(tweet: @tweet.reload, current_user: current_user) } %>
+<% end %>

@@ -17,4 +17,8 @@ RSpec.describe Tweet, type: :model do
 
   it { should validate_presence_of(:body) }
   it { should validate_length_of(:body).is_at_most(1000) }
+
+  it { should belong_to(:parent_tweet).with_foreign_key('parent_tweet_id').class_name('Tweet').inverse_of(:reply_tweets).optional }
+  it { should have_many(:reply_tweets).with_foreign_key('parent_tweet_id').class_name('Tweet') }
+
 end

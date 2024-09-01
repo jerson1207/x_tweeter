@@ -2,6 +2,7 @@ class TweetPresenter
   include ActionView::Helpers::DateHelper
   include ActionView::Helpers::TagHelper
   include Rails.application.routes.url_helpers
+  include ActionView::Helpers::AssetUrlHelper
 
   attr_reader :tweet, :current_user, :like_presenter, :bookmark_presenter, :retweet_presenter
 
@@ -18,6 +19,12 @@ class TweetPresenter
   delegate :url, :request, :heart_icon, to: :like_presenter, prefix: :like
   delegate :url, :request, :bookmark_icon, to: :bookmark_presenter, prefix: :bookmark
   delegate :url, :request, :retweet_icon, to: :retweet_presenter, prefix: :retweet
+
+  def avatar
+    return user.avatar if user.avatar.present?
+    'user-profile.svg'
+  end
+  
 
   def formatted_created_at
     if time_difference > 1.day
