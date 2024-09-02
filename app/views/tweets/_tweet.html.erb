@@ -14,7 +14,7 @@
         <div>
           <%= link_to tweet_path(tweet_presenter.tweet), data: { turbo_frame: "_top", turbo_cache: "false" }, class: "relative inline-block hover-link group hover:text-[#74C0FC]" do %>
             <i class="fa-regular fa-comment"></i>
-            <span>2.6K</span>
+            <span><%= tweet_presenter.reply_tweets_count %> </span>
             <span class="hover-text">reply</span>
           <% end %>
         </div>
