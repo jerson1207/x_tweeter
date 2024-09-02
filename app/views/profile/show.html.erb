@@ -1,0 +1,37 @@
+  <div class='w-full  h-3000px'>
+    <div class="flex justify-start items-center m-4 ">
+      <%= link_to :back, class: 'back-button', data: { controller: 'back', action: 'click->back#goBack' } do %>
+        <%= image_tag 'back_btn.svg', alt: 'Back', class: 'w-5 h-5' %>
+      <% end %>
+      <div class='ml-8'>
+        <h2 class="text-xl font-bold "><%= current_user.display_name %> </h2>
+        <p class="text-s "><%= current_user.tweets.size %> Post </p>
+      </div>
+    </div>
+
+    <div class='flex justify-between items-center'>
+      <% if current_user.avatar.present? %>
+        <%= image_tag current_user.avatar, class: "w-24 h-24 rounded-full border-2 border-gray p-1" %>
+      <% else %>
+        <%= image_tag "user-profile.svg", class: "w-24 h-24 rounded-full border-2 border-gray  p-1" %>
+      <% end %>
+    
+      <%= link_to "Set up profile", nil, class: "rounded-full px-4 py-2 border border-gray-500" %>
+    </div>
+
+    <div class="mt-8">
+      <h2><%= current_user.display_name %> </h2>
+      <p>@<%= current_user.display_name %> </p>
+
+      <div class='mt-4'>
+        <i class="fa-regular fa-calendar-days mt-4"></i> Joined August 2024      
+      </div>
+
+      <div class='flex gap-4 mt-4'>
+        <p>2 Following</p>
+        <p>26 Followers</p>
+      </div>
+    </div>
+ 
+
+  </div>
