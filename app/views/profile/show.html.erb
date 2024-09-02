@@ -1,3 +1,4 @@
+ <%= turbo_frame_tag "profile" do %> 
   <div class='w-full  h-3000px'>
     <div class="flex justify-start items-center m-4 ">
       <%= link_to :back, class: 'back-button', data: { controller: 'back', action: 'click->back#goBack' } do %>
@@ -16,7 +17,8 @@
         <%= image_tag "user-profile.svg", class: "w-24 h-24 rounded-full border-2 border-gray  p-1" %>
       <% end %>
     
-      <%= link_to "Set up profile", nil, class: "rounded-full px-4 py-2 border border-gray-500" %>
+      <%= profile_modal_button 'Set up profile' %>
+      <%# link_to "Set up profile", nil, class: "rounded-full px-4 py-2 border border-gray-500" %>
     </div>
 
     <div class="mt-8">
@@ -32,6 +34,7 @@
         <p>26 Followers</p>
       </div>
     </div>
- 
-
   </div>
+
+  <%= render "profile/profile_modal" %>
+<% end %>

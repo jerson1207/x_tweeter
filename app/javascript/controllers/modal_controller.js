@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="modal"
 export default class extends Controller {
-  static targets = ["modal", "form"];
+  static targets = ["modal", "form", "profile"];
 
   submit(event) {
     event.preventDefault()
@@ -20,4 +20,18 @@ export default class extends Controller {
   close() {
     this.modalTarget.classList.add("hidden")
   }
+
+  profile_open() {
+    const modal = document.querySelector('[data-modal-target="profile"]')
+    
+    if (modal) {
+      modal.classList.remove('hidden');
+    }
+  }
+
+  profile_close() {
+    this.profileTarget.classList.add("hidden")
+  }
+
+
 }

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace 'profile' do %>
+  <%= render template: 'profile/show', locals: { current_user: current_user } %>
+<% end %>
