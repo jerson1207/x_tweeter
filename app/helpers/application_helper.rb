@@ -15,6 +15,14 @@ module ApplicationHelper
     button_tag(text, options)
   end
 
+  def users_modal_button(text, options = {})
+    options[:class] ||= 'rounded-full px-4 py-2 border border-[#74C0FC] text-[#74C0FC] font-bold hover:text-white hover:bg-[#74C0FC]'
+    options[:data] ||= {}
+    options[:data][:action] = 'click->modal#profile_open'
+
+    button_tag(text, options)
+  end
+
   def close_button(options = {})
     options[:class] ||= 'absolute top-2 left-2 text-gray-500 hover:text-gray-700 focus:outline-none'
     options[:aria] ||= { label: 'Close' }

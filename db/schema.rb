@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_02_141351) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_09_032524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_141351) do
     t.index ["tweet_id"], name: "index_bookmarks_on_tweet_id"
     t.index ["user_id", "tweet_id"], name: "index_bookmarks_on_user_id_and_tweet_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "followings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "following_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["following_user_id"], name: "index_followings_on_following_user_id"
+    t.index ["user_id", "following_user_id"], name: "index_followings_on_user_id_and_following_user_id", unique: true
+    t.index ["user_id"], name: "index_followings_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -118,6 +128,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_141351) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "tweets"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "followings", "users"
+  add_foreign_key "followings", "users", column: "following_user_id"
   add_foreign_key "likes", "tweets"
   add_foreign_key "likes", "users"
   add_foreign_key "retweets", "tweets"
