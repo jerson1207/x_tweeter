@@ -3,10 +3,14 @@ class ProfileController < ApplicationController
   before_action :set_user
   
   def show
+    @tweet_presenters = @user.tweets.map do |tweet|
+      TweetPresenter.new(tweet: tweet, current_user: @user)
+    end
     render "users/show"
   end
 
   def update
+
     if @user.update(user_params)
       respond_to do |format|
         format.html { redirect_to profile_path, notice: 'Profile updated successfully' }

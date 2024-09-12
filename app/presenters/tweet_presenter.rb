@@ -46,6 +46,10 @@ class TweetPresenter
     tweet.created_at.strftime("%b %d, %Y")
   end
 
+  def call
+    @user.tweets.map { |tweet| TweetPresenter.new(tweet: tweet, current_user: @user) }
+  end
+
   private 
 
   def time_difference

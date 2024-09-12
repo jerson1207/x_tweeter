@@ -36,5 +36,11 @@
     </div>
   </div>
 
+  <hr class="my-4">
+
+  <div id='tweets'>
+    <%= render partial: "tweets/tweet", collection: @tweet_presenters, as: :tweet_presenter %>
+  </div>
+
   <%= render "profile/profile_modal" %>
 <% end %>
