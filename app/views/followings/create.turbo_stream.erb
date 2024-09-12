@@ -1,3 +1,7 @@
 <%= turbo_stream.replace "follow-unfollow" do %>
   <%= render partial: "users/follow_botton", locals: { user: @user, current_user: current_user } %>
 <% end %>
+
+<%= turbo_stream.replace "user_follow_stats" do %>
+  <%= render partial: "shared/follower_and_following_count_frame", locals: { user: @user.reload } %>
+<% end %>

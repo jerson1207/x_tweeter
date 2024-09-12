@@ -30,10 +30,8 @@
         <i class="fa-regular fa-calendar-days mt-4"></i> Joined August 2024      
       </div>
 
-      <div class='flex gap-4 mt-4'>
-        <p>2 Following</p>
-        <p>26 Followers</p>
-      </div>
+      <%= render partial: "shared/follower_and_following_count_frame", locals: { user: @user } %>
+      
     </div>
   </div>
 

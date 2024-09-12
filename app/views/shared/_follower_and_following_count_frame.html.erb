@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "user_follow_stats" do %>
+  <div class='flex gap-4 mt-4'>
+    <p><%= user.following_count %> Following </p>
+    <p><%= user.follower_count %> Followers</p>
+  </div>
+<% end %>

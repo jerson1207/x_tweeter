@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "follow-unfollow"  do %>
-  <% if @user.followers.include?(current_user) %>
+  <% if user.followers.include?(current_user) %>
         <%= link_to "Unfollow", user_following_path(user, current_user.followings.find_by(following_user_id: user)), 
                                 data: { "turbo-method": :delete },
                                 class: "rounded-full px-4 py-2 border  font-bold text-white bg-[#74C0FC] hover:bg-[#fff] hover:border-[#74C0FC] howver:bg-gray-200 hover:text-black " %>
