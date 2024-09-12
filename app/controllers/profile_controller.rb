@@ -1,20 +1,33 @@
 class ProfileController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
   
   def show
+    render "users/show"
   end
 
   def update
-    current_user.update(user_params[:password].blank? ? user_params.except(:password) : user_params)
-    respond_to do |format|
-      format.html { redirect_to profile_path, notice: 'Profile updated successfully' }
-      format.turbo_stream
+    if @user.update(user_params)
+      respond_to do |format|
+        format.html { redirect_to profile_path, notice: 'Profile updated successfully' }
+        format.turbo_stream
+      end
+    else
+      respond_to do |format|
+        format.html { render "users/show", status: :unprocessable_entity } # Ensure consistent rendering
+      end
     end
-  end  
+  end 
 
   private
 
+  def set_user
+    @user = current_user
+  end
+
   def user_params
-    params.require(:user).permit(:username, :display_name, :email, :password, :location, :bio, :url)
+    params.require(:user).permit(:username, :display_name, :email, :password, :location, :bio, :url).tap do |whitelisted|
+      whitelisted.delete(:password) if whitelisted[:password].blank?
+    end
   end
 end

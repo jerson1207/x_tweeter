@@ -17,9 +17,11 @@
         <%= image_tag "user-profile.svg", class: "w-24 h-24 rounded-full border-2 border-gray  p-1" %>
       <% end %>
     
-      
-      <%= render partial: "users/follow_botton", locals: { user: @user, current_user: current_user } %>
-
+      <% if controller_name == "profile" %>
+        <%= profile_modal_button 'Set up profile' %>
+      <% else %>
+        <%= render partial: "users/follow_botton", locals: { user: @user, current_user: current_user } %>
+      <% end %>
     </div>
 
     <div class="mt-8">
@@ -31,7 +33,6 @@
       </div>
 
       <%= render partial: "shared/follower_and_following_count_frame", locals: { user: @user } %>
-      
     </div>
   </div>
 
