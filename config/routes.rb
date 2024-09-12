@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :retweets, only: [:create, :destroy]
     resources :reply_tweets, only: [:create]
   end
+  resources :bookmarks, only: [:index]
 
   get :dashboard, to: "dashboard#index"
   resources :usernames, only: [:new, :update]  

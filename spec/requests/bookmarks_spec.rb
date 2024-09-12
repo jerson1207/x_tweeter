@@ -6,6 +6,14 @@ RSpec.describe "Bookmarks", type: :request do
 
   before { sign_in user }
 
+  describe "GET /index" do
+    it "returns a successful response and lists bookmarked tweets" do
+      get bookmarks_path
+      
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe "Post /tweets/:tweet_id/bookmarks" do
     it "creates a new bookmark" do
       expect do 
