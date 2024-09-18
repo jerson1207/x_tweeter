@@ -1,0 +1,9 @@
+<div class='w-full bg-white rounded-lg'>
+  <div class="flex justify-start items-center ">
+    <%= link_to :back, class: 'back-button', data: { controller: 'back', action: 'click->back#goBack' } do %>
+      <%= image_tag 'back_btn.svg', alt: 'Back', class: 'w-5 h-5' %>
+    <% end %>
+  </div>
+
+  <%= render partial: "tweets/tweet", collection: @tweet_presenters, as: :tweet_presenter %>
+</div>

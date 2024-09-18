@@ -1,0 +1,11 @@
+<h1>Explorer</h1>
+
+<% @hashtags.each do |hashtag| %>
+  <div class='mb-4' 
+     data-controller="hashtag" 
+     data-hashtag-url-value="<%= hashtag_path(hashtag) %>"
+     data-action="click->hashtag#handleClick">
+    <p class="text-xl font-bold ">#<%= hashtag.tag %></p> 
+    <p><%= hashtag.tweets.size %> </p>
+  </div>
+<% end %>

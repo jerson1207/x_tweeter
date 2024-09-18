@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class='mt-4'><%= @tweet_presenter.body %></div>
+  <div class='mt-4 text-2xl'><%= @tweet_presenter.body_html.html_safe %></div>
 
   <div class="my-4">
     <span ><%= @tweet_presenter.formatted_time %></span>

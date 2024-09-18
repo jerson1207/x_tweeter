@@ -7,7 +7,7 @@
       <span class='text-gray-500'>@<%= tweet_presenter.username %> · <%= tweet_presenter.formatted_created_at %></span>
 
       <%= link_to tweet_path(tweet_presenter.tweet), data: { turbo_frame: "_top" } do %>
-        <p><%= tweet_presenter.body %></p>
+        <p><%= tweet_presenter.body_html.html_safe %></p>
       <% end %>
 
       <div class='flex justify-between mt-4'>

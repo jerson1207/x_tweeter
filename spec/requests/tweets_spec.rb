@@ -17,7 +17,6 @@ RSpec.describe "Tweets", type: :request do
 
     it "queues up ViewTweetJob" do
       get tweet_path(tweet)
-      # Corrected to expect the actual arguments
       expect(ViewTweetJob).to have_received(:perform_async).with(tweet.id, user.id)
     end
   end

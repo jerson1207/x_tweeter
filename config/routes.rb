@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   get "profile", to: "profile#show", as: "profile"
   put "profile", to: "profile#update"
+  resources :hashtags, only: [:index, :show], path: "/explore"
 
   resources :users, only: :show do
     resources :followings, only: [:create, :destroy]

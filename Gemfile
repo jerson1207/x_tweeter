@@ -82,3 +82,4 @@ gem "devise"
 gem 'mini_magick'
 gem 'redis'
 gem 'sidekiq'
+gem 'tp'

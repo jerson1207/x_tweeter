@@ -9,3 +9,7 @@
 .hover-link:hover .hover-text {
   @apply opacity-100;
 }
+
+.tweeter-link {
+  @apply text-[#74c0fc] font-bold  hover:underline
+}

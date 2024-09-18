@@ -31,8 +31,19 @@
         </div>
         
         <!-- Column -->
-        <div class='w-1/6 bg-green-300 sticky top-0 h-screen'>
-          Column
+        <div class='w-1/6 sticky top-0 h-screen'>
+          <p class="text-xl my-4 ">Trends for you</p>
+          <% Hashtag.includes(:tweets).take(10).each do |hashtag| %>
+            <div class='mb-4' 
+              data-controller="hashtag" 
+              data-hashtag-url-value="<%= hashtag_path(hashtag) %>"
+              data-action="click->hashtag#handleClick">
+              <p class="text-x font-bold ">#<%= hashtag.tag %></p> 
+              <p><%= hashtag.tweets.size %> posts</p>
+            </div>
+          <% end %>
+
+          <%= link_to "Show more", nil, class:"text-[#74c0fc]" %>
         </div>
       </div>
     <% end %>
