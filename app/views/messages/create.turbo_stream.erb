@@ -1,0 +1,6 @@
+<%= turbo_stream.append "messages" do %>
+  <%= render partial: "messages/message", locals: { message: @message }%>
+  <script>
+    document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'end' });
+  </script>
+<% end %>

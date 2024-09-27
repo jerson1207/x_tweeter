@@ -1,0 +1,16 @@
+<div class="<%= message.user == current_user ? 'message-container-current-user' : 'message-container-other-user' %>">
+  <div class="flex items-center <%= message.user == current_user ? 'message-flex-current-user' : 'message-flex-other-user' %>">
+    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"> A </div>
+    
+    <div class="flex flex-col">
+      <div class="relative <%= message.user == current_user ? 'message-bubble-current-user' : 'message-bubble-other-user' %> text-sm py-2 px-4 shadow rounded-xl">
+        <div><%= message.body %></div>
+      </div>
+      
+      <p class="px-4  text-[10px] text-gray-500 <%= message.user == current_user ? 'text-right' : 'text-left' %>">
+        <%= message.created_at.strftime("%b %-d, %Y %l:%M %P") %>
+      </p>
+    </div>
+  </div>
+</div>
+

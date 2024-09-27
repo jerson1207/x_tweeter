@@ -20,7 +20,17 @@
       <% if controller_name == "profile" %>
         <%= profile_modal_button 'Set up profile' %>
       <% else %>
-        <%= render partial: "users/follow_botton", locals: { user: @user, current_user: current_user } %>
+        <div class='flex justify-center items-center gap-3'>
+          <%= link_to message_threads_path(user_id: @user.id), data: { controller: "messages", action: "", turbo: "false" } do %>
+            <div class='rounded-full px-2 py-1 border border-[#74C0FC] text-black font-bold hover:text-white hover:bg-[#74C0FC]'>
+              <i class="fa-regular text-3xl fa-envelope"></i>
+            </div>
+          <% end %>
+          
+          <div class=''>
+            <%= render partial: "users/follow_botton", locals: { user: @user, current_user: current_user } %>
+          </div>
+        </div>
       <% end %>
     </div>
 

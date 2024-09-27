@@ -13,3 +13,32 @@
 .tweeter-link {
   @apply text-[#74c0fc] font-bold  hover:underline
 }
+
+/* messages */
+.message-container-current-user {
+  @apply col-start-6 col-end-13 p-3 rounded-lg;
+}
+
+.message-container-other-user {
+  @apply col-start-1 col-end-8 p-3 rounded-lg;
+}
+
+.message-bubble-current-user {
+  @apply mr-3 bg-indigo-100;
+}
+
+.message-bubble-other-user {
+  @apply ml-3 bg-white;
+}
+
+.message-flex-current-user {
+  @apply justify-start flex-row-reverse;
+}
+
+.message-flex-other-user {
+  @apply flex-row;
+}
+
+.active {
+  @apply bg-slate-300
+}

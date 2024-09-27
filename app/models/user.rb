@@ -22,6 +22,9 @@ class User < ApplicationRecord
   has_many :reverse_followings, foreign_key: :following_user_id, class_name: "Following"
   has_many :followers, through: :reverse_followings, source: :user
 
+  has_many :messages, dependent: :destroy
+  has_and_belongs_to_many :message_threads
+
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 
   def set_display_name

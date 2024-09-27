@@ -22,6 +22,9 @@ RSpec.describe User, type: :model do
   it { should have_many(:reverse_followings).with_foreign_key(:following_user_id).class_name("Following") }
   it { should have_many(:followers).through(:reverse_followings).source(:user) }
 
+  it { should have_many(:messages).dependent(:destroy) }
+  it { should have_and_belong_to_many :message_threads }
+
   describe "#set_display_name" do
     context "when display_name is set" do
       it "does not change the display name" do
