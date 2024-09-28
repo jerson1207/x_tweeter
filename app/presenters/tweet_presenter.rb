@@ -48,7 +48,7 @@ class TweetPresenter
 
   def body_html
     texts = tweet.body.split(" ").map do |word|
-      if word.include?("#")
+      if word.include?("#") || word.include?("@")
         "<a href='#' class='tweeter-link'>#{word}</a>"
       else
         word

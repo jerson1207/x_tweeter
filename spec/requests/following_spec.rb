@@ -9,12 +9,12 @@ RSpec.describe "Followings", type: :request do
   end
 
   describe "POST /users/:user_id/followings" do
-    it "creates a new following" do
+    it "creates a new following and a notification" do
       expect do
         post user_followings_path(current_user), params: {
           following_user_id: other_user.id
         }
-      end.to change(Following, :count).by(1)
+      end.to change(Following, :count).by(1).and change(Notification, :count).by(1)
       
       expect(response).to redirect_to(user_path(other_user))
     end

@@ -4,6 +4,7 @@ class FollowingsController < ApplicationController
   def create
     @user = User.find(params[:following_user_id])
     current_user.followings.create(following_params)
+    NotificationService.create_followed_me_notification(user: @user, actor: current_user)
     respond_to do |format|
       format.html { redirect_to user_path(@user) }
       format.turbo_stream

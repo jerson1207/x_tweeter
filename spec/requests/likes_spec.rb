@@ -7,10 +7,10 @@ RSpec.describe "Likes", type: :request do
   before { sign_in user }
 
   describe "Post /tweets/:tweet_id/like" do
-    it "creates a new like" do
+    it "creates a new like and  a notification" do
       expect do 
         post tweet_likes_path(tweet)
-      end.to change { Like.count }.by(1)
+      end.to change { Like.count }.by(1).and change(Notification, :count).by(1)
       expect(response).to have_http_status(:redirect)
     end
 
